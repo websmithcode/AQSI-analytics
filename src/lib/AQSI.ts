@@ -1,5 +1,5 @@
 import { Cache } from '$lib/Cache';
-import { Helpers } from '$lib/helpers';
+import { Helpers } from '$lib/Helpers';
 
 type _fetch_options = RequestInit;
 

@@ -1,4 +1,4 @@
-import { Helpers } from './helpers';
+import { Helpers } from './Helpers';
 
 class CacheOutdatedError extends Error {}
 class CacheHasNoValueError extends Error {}
