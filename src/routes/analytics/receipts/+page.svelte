@@ -32,6 +32,10 @@
 	}
 
 	$: if (date) getData().then((d) => (data = d));
+
+	function formatToLocaleTimeString(datetime) {
+		return new Date(datetime).toLocaleTimeString();
+	}
 </script>
 
 <div class="flex">
@@ -51,7 +55,7 @@
 		</tr>
 		<tr>
 			<td>{data.rows[0].cashier.name}</td>
-			<td>{data.rows[0].processedAt}</td>
+			<td>{formatToLocaleTimeString(data.rows[0].processedAt)}</td>
 			<td>{data.rows.length}</td>
 			<td>{data.total}р</td>
 		</tr>
@@ -60,6 +64,7 @@
 		{#each data.rows as row, i}
 			<tr>
 				<td class="text-end">{i}</td>
+				<td>{formatToLocaleTimeString(row.processedAt)}</td>
 				<td>
 					<ul>
 						{#each row.content.positions as pos}
