@@ -69,7 +69,7 @@
 					<ul>
 						{#each row.content.positions as pos}
 							<li>
-								{pos.text}
+								{pos.text} ({pos.quantity})
 							</li>
 						{/each}
 					</ul>
