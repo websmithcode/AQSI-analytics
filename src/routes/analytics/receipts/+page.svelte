@@ -38,63 +38,67 @@
 	}
 </script>
 
-<div class="flex">
-	<div class="flex items-center border border-black space-x-3">
-		<button class="px-2 py-1 border border-gray-300" on:click={decDate}>{'<-'}</button>
-		<div>{date.toDateString()}</div>
-		<button class="px-2 py-1 border border-gray-300" on:click={incDate}>{'->'}</button>
+<main>
+	<div class="flex justify-center mb-3">
+		<div class="flex items-center border border-black space-x-3">
+			<button class="px-2 py-1 border border-gray-300" on:click={decDate}>{'<-'}</button>
+			<div>{date.toDateString()}</div>
+			<button class="px-2 py-1 border border-gray-300" on:click={incDate}>{'->'}</button>
+		</div>
 	</div>
-</div>
-{#if data && data.rows.length > 0}
-	<table class="mb-3">
-		<tr>
-			<th>Кассир</th>
-			<th>Первый чек</th>
-			<th>Чеков</th>
-			<th>Итог</th>
-		</tr>
-		<tr>
-			<td>{data.rows[0].cashier.name}</td>
-			<td>{formatToLocaleTimeString(data.rows[0].processedAt)}</td>
-			<td>{data.rows.length}</td>
-			<td>{data.total}р</td>
-		</tr>
-	</table>
-	<table>
-		{#each data.rows as row, i}
+	{#if data && data.rows.length > 0}
+		<table class="mb-3">
 			<tr>
-				<td class="text-end">{i}</td>
-				<td>{formatToLocaleTimeString(row.processedAt)}</td>
-				<td>
-					<ul>
-						{#each row.content.positions as pos}
-							<li>
-								{pos.text} ({pos.quantity})
-							</li>
-						{/each}
-					</ul>
-				</td>
-				<td>
-					<ul>
-						{#each row.content.positions as pos}
-							<li>
-								{pos.price}
-							</li>
-						{/each}
-					</ul>
-				</td>
-				<td>
-					{row.amount}
-				</td>
+				<th>Кассир</th>
+				<th>Первый чек</th>
+				<th>Чеков</th>
+				<th>Итог</th>
 			</tr>
-		{/each}
-	</table>
-{/if}
+			<tr>
+				<td>{data.rows[0].cashier.name}</td>
+				<td>{formatToLocaleTimeString(data.rows[0].processedAt)}</td>
+				<td>{data.rows.length}</td>
+				<td>{data.total}р</td>
+			</tr>
+		</table>
+		<table>
+			{#each data.rows as row, i}
+				<tr>
+					<td class="text-end">{i}</td>
+					<td>{formatToLocaleTimeString(row.processedAt)}</td>
+					<td>
+						<ul>
+							{#each row.content.positions as pos}
+								<li>
+									{pos.text} ({pos.quantity})
+								</li>
+							{/each}
+						</ul>
+					</td>
+					<td>
+						<ul>
+							{#each row.content.positions as pos}
+								<li>
+									{pos.price}
+								</li>
+							{/each}
+						</ul>
+					</td>
+					<td>
+						{row.amount}
+					</td>
+				</tr>
+			{/each}
+		</table>
+	{/if}
+</main>
 
 <style lang="sass">
-  table, table td
-    @apply border-collapse border border-black
-  table td
-    @apply p-2
+  main
+    @apply pt-3
+    table, table td
+      @apply border-collapse border border-black
+    table td
+      @apply p-2
 
 </style>
