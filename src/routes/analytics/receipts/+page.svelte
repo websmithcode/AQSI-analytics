@@ -24,6 +24,9 @@
 		const api = new AQSI();
 		const _data = await api.getReceiptsOfDay(date);
 		console.log(_data);
+		_data.rows = _data.rows.sort(
+			(a, b) => new Date(a.processedAt).getTime() - new Date(b.processedAt).getTime()
+		);
 
 		return {
 			rows: _data.rows,
